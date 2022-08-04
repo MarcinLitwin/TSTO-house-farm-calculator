@@ -5,57 +5,83 @@
         <title>Tapped Out Calculator</title>
     </head>
     <body>
+        <button type="button" onclick="howMuchHouseAndIncome()">
+            How much can i make from my houses? On one go or whole day. Just one
+            type of houses at the moment
+        </button>
         <script>
-            // Input how much money you have to spend
-            let money = parseInt(
-                prompt('How much money do you have to spend?')
-            );
-
-            // Input how much house costs
-            let cost = parseInt(prompt('How much does the house cost?'));
-
-            // Input how much house produces
-            let production = parseInt(
-                prompt('How much does one house produce?')
-            );
-
-            // Input how much bonus you have
-            let bonus = parseInt(prompt('How much bonus do you have?'));
-
-            //PART OF CALCULATIONS
-
-            //How much houses can we build? money/cost
-            let howMuch = money / cost;
-            console.log('howMuch' + howMuch);
-
-            // production by one time: howMuch * production
-            let income = howMuch * production;
-            console.log('income' + income);
-
-            //final income: income + income*bonus
-            let finalIncome = income + income * (0.01 * bonus);
-            console.log('finalIncome' + finalIncome);
-
-            // Ask do you want to calculate daily income
-            let doDaily = confirm('Do you want to calculate daily income?');
-
-            // If yes ask how much time daily you have
-            // and how often houses produce
-            // Output effect
-            if (doDaily == 1) {
-                let timeByDay = parseInt(
-                    prompt('How long do you plan to play by day')
+            function howMuchHouseAndIncome() {
+                /*// Input how much money you have to spend
+                let money = parseInt(
+                    prompt('How much money do you have to spend?')
                 );
-                let timeToProduct = parseInt(
-                    prompt('How often does houses produce?')
+                    OLD CODE
+                // Input how much house costs
+                let cost = parseInt(prompt('How much does the house cost?')); */
+
+                // Input how many houses user have
+                let amount = parseInt(prompt('How many houses do you have'));
+
+                // Input how much house produces
+                let production = parseInt(
+                    prompt('How much does one house produce?')
                 );
 
-                //How much daily we can product? final income*(timeByDay/timeToProduct)
+                // Input how much bonus you have
+                let bonus = parseInt(prompt('How much bonus do you have?'));
 
-                let productionByDay = finalIncome * (timeByDay / timeToProduct);
-                alert(`You will be making ${productionByDay} every day`);
-            } else {
-                alert(`You will be producing ${finalIncome} on one collection`);
+                //PART OF CALCULATIONS
+                /*
+                //How much houses can we build? money/cost
+                let howMuch = money / cost;
+                console.log('howMuch' + howMuch);
+                */
+                // production by one time: howMuch * production
+                let income = amount * production;
+                console.log('income' + income);
+
+                //final income: income + income*bonus
+                let finalIncome = income + income * (0.01 * bonus);
+                console.log('finalIncome' + finalIncome);
+
+                // Ask do you want to calculate daily income
+                let doDaily = confirm('Do you want to calculate daily income?');
+
+                // If yes ask how much time daily you have
+                // and how often houses produce
+                // Output effect
+                if (doDaily == 1) {
+                    let timeByDay = parseInt(
+                        prompt('How long do you plan to play by day')
+                    );
+                    let timeToProduct = parseInt(
+                        prompt('How often does houses produce?')
+                    );
+
+                    //How much daily we can product? final income*(timeByDay/timeToProduct)
+
+                    let productionByDay =
+                        finalIncome * (timeByDay / timeToProduct);
+                    alert(`You will be making ${productionByDay} every day`);
+                } else {
+                    alert(
+                        `You will be producing ${finalIncome} on one collection`
+                    );
+                }
+            }
+
+            function calculateKEMfarm() {
+                //Given Input from user (daily income or silver to spend)
+                let money = parseInt(
+                    prompt(
+                        'How much money you have to spend? (on one round of placing'
+                    )
+                );
+
+                //Calculate how much KEM you can buy
+
+                //Ask for lvl of player
+                //Calculate how much lvls you will make and show lowest ammount of donuts
             }
         </script>
     </body>
