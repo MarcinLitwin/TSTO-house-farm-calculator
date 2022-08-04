@@ -6,107 +6,132 @@
         <link rel="stylesheet" href="./style.css" />
     </head>
     <body>
-        <button type="button" onclick="howMuchHouseAndIncome()">
-            How much can i make from my houses? On one go or whole day. Just one
-            type of houses at the moment
-        </button>
-        <button type="button" onclick="calculateKEMfarm()">
-            Calculate how much will i make on KEM farm, HAVE AT LEAST 91K GOLD
-        </button>
-        <script>
-            function howMuchHouseAndIncome() {
-                /*// Input how much money you have to spend
-                let money = parseInt(
-                    prompt('How much money do you have to spend?')
-                );
-                    OLD CODE
-                // Input how much house costs
-                let cost = parseInt(prompt('How much does the house cost?')); */
+        <!-- 
+            Inputs we need:
+            For houses:
+            - amount
+            - bonus
+            - how much produce
 
-                // Input how many houses user have
-                let amount = parseInt(prompt('How many houses do you have'));
+            For KEM:
+            - bonus
+            - money
+            - lvl
+            - collider 
+        -->
+        <div class="houses">
+            <h1>How much will house farm produce</h1>
+            <div>Amount of houses<input type="number" id="amount" /></div>
+            <div>Your actual bonus<input type="number" id="bonus1" /></div>
+            <div>
+                How much does one house produce<input
+                    type="number"
+                    id="production"
+                />
+            </div>
+            <button id="calculateHouses" onclick="houses()">Calculate</button>
+            <p id="housesOutput">Your house farm will produce 0 cash</p>
+        </div>
+
+        <div class="KEM">
+            <h1>How much lvles/donuts will KEM's produce</h1>
+            <div>Your actual bonus<input type="number" id="bonus2" /></div>
+            <div>
+                Amount of money you have<input type="number" id="money" />
+            </div>
+            <div>
+                Your actual level (at least 61)<input
+                    type="number"
+                    id="level"
+                />
+            </div>
+            <div>Activate your collider!!!!!</div>
+            <button id="KEMS" onclick="KEMCalculations()">Calculate KEM</button>
+            <p id="KEMOutput">You will gain 0 levels and 0 donuts</p>
+        </div>
+        <script>
+            /*// Input how much money you have to spend
+                            let money = parseInt(
+                                prompt('How much money do you have to spend?')
+                            );
+                                OLD CODE
+                            // Input how much house costs
+                            let cost = parseInt(prompt('How much does the house cost?')); */
+
+            // Input how many houses user have
+
+            //PART OF CALCULATIONS
+            /*
+                            //How much houses can we build? money/cost
+                            let howMuch = money / cost;
+                            console.log('howMuch' + howMuch);
+                            */
+            // production by one time: howMuch * production
+            function houses() {
+                let amount = document.getElementById('amount').value;
 
                 // Input how much house produces
-                let production = parseInt(
-                    prompt('How much does one house produce?')
-                );
+                let production = document.getElementById('production').value;
 
                 // Input how much bonus you have
-                let bonus = parseInt(prompt('How much bonus do you have?'));
+                let bonus1 = document.getElementById('bonus1').value;
 
-                //PART OF CALCULATIONS
-                /*
-                //How much houses can we build? money/cost
-                let howMuch = money / cost;
-                console.log('howMuch' + howMuch);
-                */
-                // production by one time: howMuch * production
                 let income = amount * production;
                 console.log('income' + income);
 
                 //final income: income + income*bonus
-                let finalIncome = income + income * (0.01 * bonus);
+                let finalIncome = income + income * (0.01 * bonus1);
                 console.log('finalIncome' + finalIncome);
 
-                // Ask do you want to calculate daily income
-                let doDaily = confirm('Do you want to calculate daily income?');
-
-                // If yes ask how much time daily you have
-                // and how often houses produce
-                // Output effect
-                if (doDaily == 1) {
-                    let timeByDay = parseInt(
-                        prompt('How long do you plan to play by day')
-                    );
-                    let timeToProduct = parseInt(
-                        prompt('How often does houses produce?')
-                    );
-
-                    //How much daily we can product? final income*(timeByDay/timeToProduct)
-
-                    let productionByDay =
-                        finalIncome * (timeByDay / timeToProduct);
-                    alert(`You will be making ${productionByDay} every day`);
-                } else {
-                    alert(
-                        `You will be producing ${finalIncome} on one collection`
-                    );
-                }
+                document.getElementById(
+                    'housesOutput'
+                ).innerHTML = `Your house farm will produce ${finalIncome} cash`;
             }
+            /*
+                            // Ask do you want to calculate daily income
+                            let doDaily = confirm('Do you want to calculate daily income?');
 
-            function calculateKEMfarm() {
+                            // If yes ask how much time daily you have
+                            // and how often houses produce
+                            // Output effect
+                            if (doDaily == 1) {
+                                let timeByDay = parseInt(
+                                    prompt('How long do you plan to play by day')
+                                );
+                                let timeToProduct = parseInt(
+                                    prompt('How often does houses produce?')
+                                );
+
+                                //How much daily we can product? final income*(timeByDay/timeToProduct)
+
+                                let productionByDay =
+                                    finalIncome * (timeByDay / timeToProduct);
+                                alert(`You will be making ${productionByDay} every day`);
+                            } else {
+                                alert(
+                                    `You will be producing ${finalIncome} on one collection`
+                                );
+                            }
+                        }
+
+            */
+
+            // Ask for activated collider
+
+            function KEMCalculations() {
                 //Given Input from user (daily income or silver to spend)
-                let money = parseInt(
-                    prompt(
-                        'How much money you have to spend? (on one round of placing'
-                    )
-                );
+                let money = document.getElementById('money').value;
                 console.log('money' + money);
                 //Ask how much bonus do you have
-                let bonus = parseInt(prompt('How much bonus do you have?'));
-                console.log('bonus' + bonus);
-
-                // Ask for activated collider
-                let colliderMulti;
-                let collider = confirm('Do you have your collider active?');
-                if (collider == true) {
-                    colliderMulti = 5;
-                } else {
-                    colliderMulti = 1;
-                }
-                console.log('collider' + colliderMulti);
+                let bonus = document.getElementById('bonus2').value;
 
                 //Calculate how much KEM you can buy PRICE OF FIRST 26 KEMS 90170
                 let howMuch = (money - 90170) / 14400;
                 let finalHowMuch = Math.floor(howMuch) + 26;
                 console.log('that many KEMs' + finalHowMuch);
-
+                console.log('bonus:' + bonus);
                 //Ask for lvl of player
-                let level = parseInt(
-                    prompt(
-                        'Which lvl are you currently? works from 60+ at the moment'
-                    )
-                );
+                let level = document.getElementById('level').value;
                 let expRequired;
                 if (level > 60 && level < 101) {
                     expRequired = 40000;
@@ -122,8 +147,7 @@
 
                 //Calculate how much lvls you will make and show lowest ammount of donuts EACH KEM GIVE 2000 xp
                 let gainedLevels =
-                    (2000 * (bonus * 0, 01) * colliderMulti * finalHowMuch) /
-                    expRequired;
+                    (2000 * (bonus * 0, 01) * 5 * finalHowMuch) / expRequired;
 
                 console.log('levels gained' + gainedLevels);
 
@@ -131,9 +155,10 @@
                 console.log('really gained levels' + realGainedLevels);
 
                 let donuts = realGainedLevels;
-                alert(
-                    `You will gain ${realGainedLevels} levels and at least ${donuts} donuts`
-                );
+                document.getElementById(
+                    'KEMOutput'
+                ).innerHTML = `You will gain ${realGainedLevels} levels and ${donuts} donuts`;
+
                 console.log('donuts' + donuts);
             }
         </script>
