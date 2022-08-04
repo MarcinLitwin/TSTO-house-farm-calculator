@@ -3,11 +3,15 @@
     <head>
         <meta charset="UTF-8" />
         <title>Tapped Out Calculator</title>
+        <link rel="stylesheet" href="./style.css" />
     </head>
     <body>
         <button type="button" onclick="howMuchHouseAndIncome()">
             How much can i make from my houses? On one go or whole day. Just one
             type of houses at the moment
+        </button>
+        <button type="button" onclick="calculateKEMfarm()">
+            Calculate how much will i make on KEM farm, HAVE AT LEAST 91K GOLD
         </button>
         <script>
             function howMuchHouseAndIncome() {
@@ -77,11 +81,60 @@
                         'How much money you have to spend? (on one round of placing'
                     )
                 );
+                console.log('money' + money);
+                //Ask how much bonus do you have
+                let bonus = parseInt(prompt('How much bonus do you have?'));
+                console.log('bonus' + bonus);
 
-                //Calculate how much KEM you can buy
+                // Ask for activated collider
+                let colliderMulti;
+                let collider = confirm('Do you have your collider active?');
+                if (collider == true) {
+                    colliderMulti = 5;
+                } else {
+                    colliderMulti = 1;
+                }
+                console.log('collider' + colliderMulti);
+
+                //Calculate how much KEM you can buy PRICE OF FIRST 26 KEMS 90170
+                let howMuch = (money - 90170) / 14400;
+                let finalHowMuch = Math.floor(howMuch) + 26;
+                console.log('that many KEMs' + finalHowMuch);
 
                 //Ask for lvl of player
-                //Calculate how much lvls you will make and show lowest ammount of donuts
+                let level = parseInt(
+                    prompt(
+                        'Which lvl are you currently? works from 60+ at the moment'
+                    )
+                );
+                let expRequired;
+                if (level > 60 && level < 101) {
+                    expRequired = 40000;
+                } else if (level > 100) {
+                    expRequired = 500000;
+                } else {
+                    alert(
+                        'You have to low level for this calculator. SORRY! Maybe this will change some day'
+                    );
+                }
+                console.log('level' + level);
+                console.log('expRequired' + expRequired);
+
+                //Calculate how much lvls you will make and show lowest ammount of donuts EACH KEM GIVE 2000 xp
+                let gainedLevels =
+                    (2000 * (bonus * 0, 01) * colliderMulti * finalHowMuch) /
+                    expRequired;
+
+                console.log('levels gained' + gainedLevels);
+
+                let realGainedLevels = Math.floor(gainedLevels);
+                console.log('really gained levels' + realGainedLevels);
+
+                let donuts = realGainedLevels;
+                alert(
+                    `You will gain ${realGainedLevels} levels and at least ${donuts} donuts`
+                );
+                console.log('donuts' + donuts);
             }
         </script>
     </body>
