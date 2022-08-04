@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Tapped Out Calculator</title>
+    </head>
+    <body>
+        <script>
+            // Input how much money you have to spend
+            let money = parseInt(
+                prompt('How much money do you have to spend?')
+            );
+
+            // Input how much house costs
+            let cost = parseInt(prompt('How much does the house cost?'));
+
+            // Input how much house produces
+            let production = parseInt(
+                prompt('How much does one house produce?')
+            );
+
+            // Input how much bonus you have
+            let bonus = parseInt(prompt('How much bonus do you have?'));
+
+            //PART OF CALCULATIONS
+
+            //How much houses can we build? money/cost
+            let howMuch = money / cost;
+            console.log('howMuch' + howMuch);
+
+            // production by one time: howMuch * production
+            let income = howMuch * production;
+            console.log('income' + income);
+
+            //final income: income + income*bonus
+            let finalIncome = income + income * bonus;
+            console.log('finalIncome' + finalIncome);
+
+            // Ask do you want to calculate daily income
+            let doDaily = confirm('Do you want to calculate daily income?');
+
+            // If yes ask how much time daily you have
+            // and how often houses produce
+            // Output effect
+            if (doDaily == 1) {
+                let timeByDay = parseInt(
+                    prompt('How long do you plan to play by day')
+                );
+                let timeToProduct = parseInt(
+                    prompt('How often does houses produce?')
+                );
+
+                //How much daily we can product? final income*(timeByDay/timeToProduct)
+
+                let productionByDay = finalIncome * (timeByDay / timeToProduct);
+                alert(`You will be making ${productionByDay} every day`);
+            } else {
+                alert(`You will be producing ${finalIncome} on one collection`);
+            }
+        </script>
+    </body>
+</html>
